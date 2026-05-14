@@ -38,10 +38,13 @@ export default function Home() {
     }
     fetchProducts()
   }, [])
-
+  // 40 [] Er en dependency som gjør at siden henter dataen 1 gang og hindrer at den henter data hele tiden.
   return (
+    //44 <div> burde fjernes siden alt er i main.
     <div>
+  
       <section>
+        {/* 49 Gjør at hvis den ikke finner ett produkt vil det bli erstattet med <p> */}
         <h2>Nyeste produkter til salgs</h2>
         {forSale.length === 0 ? (
           <p>Ingen produkter til salgs.</p>
