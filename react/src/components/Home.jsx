@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import client from '../helpers/sanityClient'
 
 export default function Home() {
+  //Lager en state. Staten er en tom array, som vi kan legge til ting inni. 
   const [forSale, setForSale] = useState([])
   const [forTrade, setForTrade] = useState([])
 
+  //useEffect er en funksjon som henter data fra komponenter. 
   useEffect(() => {
+    //Arrow funksjonen peker til en anonym funksjon, som vil si at den ikke er bundet til en spesifik identifikator.
+    //Async henter informasjon fra Sanity.
     const fetchProducts = async () => {
       const query = `{
         "forSale": *[_type == "product" && status == "active" && listingType == "sale"]
