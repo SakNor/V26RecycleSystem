@@ -11,7 +11,7 @@ export default function List() {
   // useEffect henter data fra komponentet
   useEffect(() => {
     const fetchList = async () => {
-      // GROQ-spørring: henter listen med ID-en fra sanity 
+      // GROQ-spørring: henter listen med ID-en fra sanity. (Lager ønskelisten som er tilknyttet brukeren.)
       // henter også eierens navn og alle produkter som er referert
       const query = `*[_type == "userList" && _id == $id][0]{
         _id,
