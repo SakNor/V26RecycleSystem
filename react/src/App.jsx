@@ -37,15 +37,22 @@ function App() {
   }, []) // tom array = kjører bare en gang når appen starter
 
   return (
+    /* Velger hvilken komponent som skal vises basert på URL-en */
     <Routes>
+    
+    {/* Layout er en wrapper-rute - alle undersider arver navbar/footer */}  
       <Route element={<Layout loggedInUser={loggedInUser} />}>
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
+
+        {/* :id er en dynamisk parameter - hentes med useParams() i komponenten */}
+        {/* Profile og NewProduct trenger loggedInUser for å vise/skjule innhold */}
         <Route path="/product/:id" element={<Product />} />
         <Route path="/profile/:id" element={<Profile loggedInUser={loggedInUser} />} />
         <Route path="/list/:id" element={<List />} />
         <Route path="/products/new" element={<NewProduct loggedInUser={loggedInUser} />} />
         <Route path="/search" element={<SearchResults />} />
+        {/* * matcher alle URL-er som ikke er definert over - viser 404-siden */}
         <Route path="*" element={<Show404 />} />
       </Route>
     </Routes>
