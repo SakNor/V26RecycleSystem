@@ -4,10 +4,13 @@ import client from '../helpers/sanityClient'
 import './NewProduct.css'
 
 export default function NewProduct({ loggedInUser }) {
+  // Sender brukeren videre etter at produktet er opprettet.
   const navigate = useNavigate()
 
+  // Liste over underkategorier hentet fra Sanity - brukes i dropdown-meny.
   const [subcategories, setSubcategories] = useState([])
 
+  // Skjemafelt - ett state per felt brukeren fyller inn.
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [subcategoryId, setSubcategoryId] = useState('')
@@ -15,9 +18,14 @@ export default function NewProduct({ loggedInUser }) {
   const [price, setPrice] = useState('')
   const [tradeWish, setTradeWish] = useState('')
 
+  // Submitting: true mens venter på svar fra Sanity (hindrer dobbeltklikk)
+  // error: viser feilmelding til brukeren hvis noe går galt.
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
 
+
+  // henter alle underkategorier fra Sanity når komponenten laster
+  // Sortert alfabetisk, med kategorinavnet inkludert.
   useEffect(() => {
     const fetchSubcategories = async () => {
       const query = `*[_type == "subcategory"] | order(title asc){
@@ -27,16 +35,18 @@ export default function NewProduct({ loggedInUser }) {
       setSubcategories(data)
     }
     fetchSubcategories()
-  }, [])
+  }, []) // Tom array = kjører bare en gang ved første render
 
+  // Hvis ingen bruker er logget inn, vis melding i stedet for skjemaet
   if (!loggedInUser) {
     return <p>Du må være logget inn for å legge ut et produkt.</p>
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault() // Hindrer at siden lastet på nytt
     setError(null)
 
+    //validering - sjekker at alle påkrevde felt er fylt ut
     if (!title.trim()) {
       setError('Tittel er påkrevd.')
       return
@@ -56,6 +66,9 @@ export default function NewProduct({ loggedInUser }) {
 
     setSubmitting(true)
     try {
+      // Oppretter nytt produkt-dokument i Sanity
+      // Owner og subcategory lagres som referanser, ikke kopier
+      // Spread-syntaksen legger kun til price ELLER tradewish
       const newProduct = await client.create({
         _type: 'product',
         title: title.trim(),
@@ -67,8 +80,10 @@ export default function NewProduct({ loggedInUser }) {
         ...(listingType === 'sale' ? { price: price.trim() } : {}),
         ...(listingType === 'trade' ? { tradeWish: tradeWish.trim() } : {})
       })
+      // Sender brukeren til produktsiden for det nye produktet
       navigate(`/product/${newProduct._id}`)
     } catch (err) {
+      // Hvis Sanity kaster en feil, vises den til brukeren
       setError(err.message)
       setSubmitting(false)
     }
@@ -78,6 +93,8 @@ export default function NewProduct({ loggedInUser }) {
     <div>
       <h1>Legg ut nytt produkt</h1>
       <form onSubmit={handleSubmit} className="product-form">
+       
+       {/* tittel-felt */}
         <p>
           <label>
             Tittel:{' '}
@@ -90,6 +107,7 @@ export default function NewProduct({ loggedInUser }) {
           </label>
         </p>
 
+        {/* Beskrivelse */}
         <p>
           <label>
             Beskrivelse:<br />
@@ -101,7 +119,7 @@ export default function NewProduct({ loggedInUser }) {
             />
           </label>
         </p>
-
+        {/* Dropdown - viser "Elektronikk / mobiler" etc. */}
         <p>
           <label>
             Underkategori:{' '}
@@ -119,7 +137,8 @@ export default function NewProduct({ loggedInUser }) {
             </select>
           </label>
         </p>
-
+        
+        {/* Radioknapper: salg eller bytte */}
         <fieldset disabled={submitting}>
           <legend>Type</legend>
           <label>
@@ -144,7 +163,8 @@ export default function NewProduct({ loggedInUser }) {
             {' '}Til bytte
           </label>
         </fieldset>
-
+        
+        {/* prisfelt - kun synlig ved salg */}
         {listingType === 'sale' && (
           <p>
             <label>
@@ -159,6 +179,7 @@ export default function NewProduct({ loggedInUser }) {
           </p>
         )}
 
+      {/* Bytteønskefelt - kun synlig ved bytte */}
         {listingType === 'trade' && (
           <p>
             <label>
@@ -173,8 +194,10 @@ export default function NewProduct({ loggedInUser }) {
           </p>
         )}
 
+        {/* Feilmelding - vises kun hvis error er satt */}
         {error && <p className="form-error">{error}</p>}
 
+        {/* Knappen endrer tekst og låses men skjemaet sendes */}
         <p>
           <button type="submit" disabled={submitting}>
             {submitting ? 'Legger ut…' : 'Legg ut produkt'}

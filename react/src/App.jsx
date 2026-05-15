@@ -13,23 +13,28 @@ import SearchResults from './components/SearchResults'
 import './App.css'
 
 function App() {
+  // Innlogget bruker lagres her og sendes ned som prop til komponenter som trenger det
   const [loggedInUser, setLoggedInUser] = useState(null)
 
   useEffect(() => {
     // Only fetch if loggedInUser is not set
+    // Henter bare bruker hvis ingen er satt - unngår unødvendig kall
     if (!loggedInUser) {
       const fetchUser = async () => {
         try {
+          // Simulerer innlogging ved å hente første bruker i Sanity
+          // [0] gir bare ett resultat - ikke en liste
           const query = `*[_type == "user"][0]{ _id, firstName, lastName }`
           const user = await client.fetch(query)
           setLoggedInUser(user)
         } catch (error) {
+          // logger feil til konsollen uten å krasje appen
           console.error('❌ Error fetching logged in user:', error)
         }
       }
       fetchUser()
     }
-  }, [])
+  }, []) // tom array = kjører bare en gang når appen starter
 
   return (
     <Routes>

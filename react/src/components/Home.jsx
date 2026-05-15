@@ -49,6 +49,7 @@ export default function Home() {
         {forSale.length === 0 ? (
           <p>Ingen produkter til salgs.</p>
         ) : (
+          /* 54-57 Lister ut produkter + setter rekkefølgen/hva som skal med */
           <ul>
             {forSale.map(product => (
               <li key={product._id}>
@@ -61,10 +62,12 @@ export default function Home() {
       </section>
 
       <section>
+        {/* 67 Gjør at hvis den ikke finner ett produkt vil det bli erstattet med <p> */}
         <h2>Nyeste produkter til bytte</h2>
         {forTrade.length === 0 ? (
           <p>Ingen produkter til bytte.</p>
         ) : (
+          /* 72-75 Lister ut produkter + setter rekkefølgen/hva som skal med */
           <ul>
             {forTrade.map(product => (
               <li key={product._id}>
