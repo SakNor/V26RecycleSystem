@@ -115,9 +115,11 @@ export default function NewProduct({ loggedInUser }) {
             Beskrivelse:<br />
             <textarea
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)} //Event.target.value, verdien av det valgte alternativet, id-en til subcategory, lagres i staten
               disabled={submitting}
+              // Disabled gjør det umulig å endre valget sitt etter skjemaet er sendt.
               rows={4}
+              // Antall rader i tekstboksen
             />
           </label>
         </p>
@@ -130,7 +132,7 @@ export default function NewProduct({ loggedInUser }) {
               onChange={(e) => setSubcategoryId(e.target.value)}
               disabled={submitting}
             >
-              <option value="">— velg underkategori —</option>
+              <option value="">— velg underkategori —</option> {/* Placeholder */}
               {subcategories.map(sc => (
                 <option key={sc._id} value={sc._id}>
                   {sc.category} / {sc.title}
