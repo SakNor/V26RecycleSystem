@@ -19,6 +19,7 @@
   border-radius: 4px;
   background: #fff;
   box-sizing: border-box;
+  /* Burde legge til color: black; for å gjøre det mulig å lese teksten. */
 }
 
 .product-form input[type="text"]:focus,
