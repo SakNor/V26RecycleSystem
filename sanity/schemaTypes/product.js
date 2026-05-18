@@ -3,6 +3,7 @@ const product = {
   title: 'Produkt',
   type: 'document',
   fields: [
+     // required vil si den må fylles inn før den lagres i sanity.
     { name: 'title', title: 'Tittel', type: 'string', validation: r => r.required() },
     { name: 'description', title: 'Beskrivelse', type: 'text' },
 
@@ -10,6 +11,7 @@ const product = {
       name: 'image',
       title: 'Bilde',
       type: 'image',
+      // hotspot: fokus på bildet
       options: { hotspot: true }
     },
 
@@ -64,6 +66,7 @@ const product = {
       name: 'price',
       title: 'Pris',
       type: 'string',
+      // Holder inputfelt skjult hvis sale ikke er valgt.
       hidden: ({ parent }) => parent?.listingType !== 'sale'
     },
 
