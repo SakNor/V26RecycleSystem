@@ -26,7 +26,7 @@ export default function List() {
   if (!list) return <p>Laster liste...</p>
 
   return (
-    <div className="list">
+    <article className="list">
       <h1>{list.title}</h1>
       <p>
         Eier:{' '}
@@ -52,6 +52,6 @@ export default function List() {
           ))}
         </ul>
       )}
-    </div>
+    </article>
   )
 }

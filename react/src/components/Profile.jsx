@@ -34,7 +34,7 @@ export default function Profile({ loggedInUser }) {
   if (!user) return <p>Laster brukerprofil...</p>
 
   return (
-    <div className="profile">
+    <article className="profile">
       <h1>{user.firstName} {user.lastName}</h1>
       {isOwnProfile && (
         <>
@@ -83,6 +83,6 @@ export default function Profile({ loggedInUser }) {
         )}
       </section>
       )}
-    </div>
+    </article>
   )
 }

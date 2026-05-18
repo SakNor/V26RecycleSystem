@@ -41,7 +41,7 @@ export default function Product() {
   if (!product) return <p>Laster produkt...</p>
 
   return (
-    <div className="product">
+    <article className="product">
       <h1>{product.title}</h1>
 
       <img
@@ -74,6 +74,6 @@ export default function Product() {
         <p>{product.owner.email}</p>
         <p>{product.owner.city}</p>
       </section>
-    </div>
+    </article>
   )
 }

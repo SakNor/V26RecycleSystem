@@ -28,7 +28,7 @@ export default function SearchResults() {
   }, [q])
 
   return (
-    <div>
+    <>
       <h1>Søkeresultater for "{q}"</h1>
       {loading ? (
         <p>Søker...</p>
@@ -49,6 +49,6 @@ export default function SearchResults() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   )
 }

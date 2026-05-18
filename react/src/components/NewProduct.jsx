@@ -75,7 +75,7 @@ export default function NewProduct({ loggedInUser }) {
   }
 
   return (
-    <div>
+    <article>
       <h1>Legg ut nytt produkt</h1>
       <form onSubmit={handleSubmit} className="product-form">
         <p>
@@ -181,6 +181,6 @@ export default function NewProduct({ loggedInUser }) {
           </button>
         </p>
       </form>
-    </div>
+    </article>
   )
 }

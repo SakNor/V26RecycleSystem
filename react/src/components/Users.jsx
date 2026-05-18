@@ -17,7 +17,7 @@ export default function Users() {
   }, [])
 
   return (
-    <div>
+    <article>
       <h1>Brukere</h1>
       {users.length === 0 ? (
         <p>Ingen brukere.</p>
@@ -33,6 +33,6 @@ export default function Users() {
           ))}
         </ul>
       )}
-    </div>
+    </article>
   )
 }

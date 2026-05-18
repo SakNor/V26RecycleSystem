@@ -26,7 +26,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <>
       <section>
         <h2>Nyeste produkter til salgs</h2>
         {forSale.length === 0 ? (
@@ -58,6 +58,6 @@ export default function Home() {
           </ul>
         )}
       </section>
-    </div>
+    </>
   )
 }
