@@ -19,6 +19,7 @@ export default function NewProduct({ loggedInUser }) {
   const [tradeWish, setTradeWish] = useState('')
 
   // Submitting: true mens venter på svar fra Sanity (hindrer dobbeltklikk)
+  // False for å ikke sende skjemaet med engang siden laster, blir true når submitknappen trykkes, går tilbake til false
   // error: viser feilmelding til brukeren hvis noe går galt.
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
@@ -110,6 +111,7 @@ export default function NewProduct({ loggedInUser }) {
         {/* Beskrivelse */}
         <p>
           <label>
+            {/* Burde heller bruke label, og display: block, i CSS, istedenfor break. */}
             Beskrivelse:<br />
             <textarea
               value={description}
