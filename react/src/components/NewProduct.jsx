@@ -204,6 +204,7 @@ export default function NewProduct({ loggedInUser }) {
         {/* Knappen endrer tekst og låses men skjemaet sendes */}
         <p>
           <button type="submit" disabled={submitting}>
+             {/* "legg ut produkt" er en form for placeholder. Teksten i submitknappen byttes til "legger ut" hvis submitting = true. */}
             {submitting ? 'Legger ut…' : 'Legg ut produkt'}
           </button>
         </p>

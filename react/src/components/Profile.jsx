@@ -50,6 +50,7 @@ export default function Profile({ loggedInUser }) {
       {/* Vises kun hvis dette er din egen profil - bruker fragment for å gruppere */}
       {isOwnProfile && (
         <>
+          {/* Strong kan like så greit være CSS. */}
           <p><strong>Dette er din profil</strong></p>
           <p><Link to="/products/new" className="button-link">+ Legg ut nytt produkt</Link></p>
         </>

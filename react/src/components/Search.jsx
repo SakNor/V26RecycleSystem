@@ -8,7 +8,7 @@ export default function Search() {
   // useSearchParams leser URL-parametere
   // trengs bare å leses her, derfor bare første verdi i arrayen
   const [searchParams] = useSearchParams()
-  // fyller søkefeltet med det som alerede står i URL-en
+  // fyller søkefeltet med det som allerede står i URL-en
   // hvis ingen ?q finnes, brukes tom streng som standardverdi
   const [query, setQuery] = useState(searchParams.get('q') || '')
 

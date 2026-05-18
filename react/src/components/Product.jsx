@@ -46,8 +46,11 @@ export default function Product() {
     fetchProduct()
   }, [id]) // Kjører på nytt hvis ID-en i URL-en endrer seg
 
-  // Vises mens data lastet (product er fortsatt null)
+  // Viser "Laster..." både når data hentes OG hvis produktet ikke finnes.
+  // Bruk egne states for loading/error for å skille mellom tilfellene.
   if (!product) return <p>Laster produkt...</p>
+  //if (loading) return <p>Laster produkt...</p>
+  //if (error)   return <p>{error}</p>
 
   return (
     <div className="product">
@@ -57,6 +60,7 @@ export default function Product() {
       <img
         src={product.imageUrl || `https://placehold.co/400x400?text=${encodeURIComponent(product.title)}`}
         alt={product.title}
+        // Kan være CSS
         style={{ maxWidth: 400 }}
       />
 
@@ -64,6 +68,7 @@ export default function Product() {
 
       <ul>
         {/* Viser råverdien hvis statusen ikke finnes i tabellen */}
+        {/* ?? nullish coalescing */}
         <li>Status: {statusLabels[product.status] ?? product.status}</li>
         {/* krasjer ikke hvis subcategory er null */}
         <li>
