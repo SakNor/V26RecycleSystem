@@ -36,7 +36,7 @@ function App() {
       <Route element={<Layout loggedInUser={loggedInUser} />}>
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
-        <Route path="/product/:id" element={<Product />} />
+        <Route path="/product/:slug" element={<Product />} />
         <Route path="/profile/:id" element={<Profile loggedInUser={loggedInUser} />} />
         <Route path="/list/:id" element={<List />} />
         <Route path="/products/new" element={<NewProduct loggedInUser={loggedInUser} />} />

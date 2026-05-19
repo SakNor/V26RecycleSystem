@@ -5,7 +5,18 @@ const product = {
   fields: [
     { name: 'title', title: 'Tittel', type: 'string', validation: r => r.required() },
     { name: 'description', title: 'Beskrivelse', type: 'text' },
-
+    {
+      title: 'Slug',
+      name: 'slug',
+      type: 'slug',
+      options: {
+          source: 'title',
+          slugify: input => input
+                              .toLowerCase()
+                              .replace(/\s+/g, '-')
+                              .slice(0, 100)
+      }
+  },
     {
       name: 'image',
       title: 'Bilde',

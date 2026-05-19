@@ -10,12 +10,12 @@ const statusLabels = {
 }
 
 export default function Product() {
-  const { id } = useParams()
+  const { slug } = useParams()
   const [product, setProduct] = useState(null)
-
+//Endret til slug istedetfor "id"
   useEffect(() => {
-    const fetchProduct = async () => {
-      const query = `*[_type == "product" && _id == $id][0]{
+    const fetchProduct = async (slug) => {
+      const query = `*[_type == "product" && slug.current == $slug][0]{
         _id,
         title,
         description,
@@ -32,11 +32,11 @@ export default function Product() {
           _id, firstName, lastName, email, city
         }
       }`
-      const result = await client.fetch(query, { id })
+      const result = await client.fetch(query, { slug })
       setProduct(result)
     }
-    fetchProduct()
-  }, [id])
+    fetchProduct(slug)
+  }, [slug])
 
   if (!product) return <p>Laster produkt...</p>
 
