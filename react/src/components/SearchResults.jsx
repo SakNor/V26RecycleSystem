@@ -39,6 +39,7 @@ export default function SearchResults() {
   }, [q]) // avhengig av q - kjører på nytt ved nytt søk
 
   return (
+    // Kan byttes ut med fragments
     <div>
       <h1>Søkeresultater for "{q}"</h1>
 

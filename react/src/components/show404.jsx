@@ -2,6 +2,7 @@
 // Feilside - vises når ingen ruter matcher med URL-en
 export default function Show404() {
     return (
+        // Kan byttes ut med fragments
         <div>
             {/* Bilde fra public-mappen - lastes direkte uten import */}
             {/* Burde være ekstern CSS */}

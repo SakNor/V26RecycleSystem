@@ -91,6 +91,7 @@ export default function NewProduct({ loggedInUser }) {
   }
 
   return (
+    // Kan byttes ut med article
     <div>
       <h1>Legg ut nytt produkt</h1>
       <form onSubmit={handleSubmit} className="product-form">

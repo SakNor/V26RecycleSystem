@@ -29,6 +29,7 @@ function App() {
           setLoggedInUser(user)
         } catch (error) {
           // logger feil til konsollen uten å krasje appen
+          // Emoji burde fjernes
           console.error('❌ Error fetching logged in user:', error)
         }
       }

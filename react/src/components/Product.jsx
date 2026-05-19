@@ -53,6 +53,7 @@ export default function Product() {
   //if (error)   return <p>{error}</p>
 
   return (
+    // Kan byttes ut med article
     <div className="product">
       <h1>{product.title}</h1>
 

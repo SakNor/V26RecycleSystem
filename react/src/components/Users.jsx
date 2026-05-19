@@ -21,6 +21,7 @@ export default function Users() {
   }, []) // Tom array = kjører bare en gang ved første render
 
   return (
+    // Kan byttes ut med article.
     <div>
       <h1>Brukere</h1>
 

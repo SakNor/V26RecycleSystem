@@ -36,6 +36,7 @@ export default function List() {
   if (!list) return <p>Laster liste...</p>
 
   return (
+    // Kan byttes ut med article
     <div className="list">
       <h1>{list.title}</h1>
 

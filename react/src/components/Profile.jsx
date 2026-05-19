@@ -44,6 +44,7 @@ export default function Profile({ loggedInUser }) {
   if (!user) return <p>Laster brukerprofil...</p>
 
   return (
+    // Kan byttes ut med article
     <div className="profile">
       <h1>{user.firstName} {user.lastName}</h1>
 
