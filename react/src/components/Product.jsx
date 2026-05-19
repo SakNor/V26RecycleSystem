@@ -14,7 +14,7 @@ export default function Product() {
   const [product, setProduct] = useState(null)
 //Endret til slug istedetfor "id"
   useEffect(() => {
-    const fetchProduct = async (slug) => {
+    const fetchProduct = async () => {
       const query = `*[_type == "product" && slug.current == $slug][0]{
         _id,
         title,
@@ -35,7 +35,7 @@ export default function Product() {
       const result = await client.fetch(query, { slug })
       setProduct(result)
     }
-    fetchProduct(slug)
+    fetchProduct()
   }, [slug])
 
   if (!product) return <p>Laster produkt...</p>

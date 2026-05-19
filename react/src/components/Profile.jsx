@@ -53,7 +53,7 @@ export default function Profile({ loggedInUser }) {
           <ul>
             {products.map(product => (
               <li key={product._id}>
-                <Link to={`/product/${product._id}`}>{product.title}</Link>
+                <Link to={`/product/${product.slug.current}`}>{product.title}</Link>
                 {' — '}
                 {product.listingType === 'sale'
                   ? `${product.price} kr`

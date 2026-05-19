@@ -8,17 +8,18 @@ export default function Home() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const query = `{
+    const query = `{
         "forSale": *[_type == "product" && status == "active" && listingType == "sale"]
           | order(_createdAt desc)[0...5]{
-            _id, title, price
+            _id, title, price, "slug": slug.current
           },
         "forTrade": *[_type == "product" && status == "active" && listingType == "trade"]
           | order(_createdAt desc)[0...5]{
-            _id, title, tradeWish
+            _id, title, tradeWish, "slug": slug.current
           }
       }`
       const result = await client.fetch(query)
+      console.log(result.forSale)
       setForSale(result.forSale)
       setForTrade(result.forTrade)
     }
@@ -35,7 +36,7 @@ export default function Home() {
           <ul>
             {forSale.map(product => (
               <li key={product._id}>
-                <Link to={`/product/${product._id}`}>{product.title}</Link>
+                <Link to={`/product/${product.slug}`}>{product.title}</Link>
                 {' — '}{product.price} kr
               </li>
             ))}
@@ -51,7 +52,7 @@ export default function Home() {
           <ul>
             {forTrade.map(product => (
               <li key={product._id}>
-                <Link to={`/product/${product._id}`}>{product.title}</Link>
+                <Link to={`/product/${product.slug}`}>{product.title}</Link>
                 {' — '}Bytte: {product.tradeWish}
               </li>
             ))}

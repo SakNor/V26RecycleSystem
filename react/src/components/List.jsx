@@ -14,7 +14,7 @@ export default function List() {
         isPublic,
         "owner": owner->{ _id, firstName, lastName },
         "products": products[]->{
-          _id, title, status, listingType, price, tradeWish
+          _id, title,"slug":slug.current, status, listingType, price, tradeWish
         }
       }`
       const result = await client.fetch(query, { id })
@@ -43,7 +43,7 @@ export default function List() {
         <ul>
           {list.products.map(product => (
             <li key={product._id}>
-              <Link to={`/product/${product._id}`}>{product.title}</Link>
+              <Link to={`/product/${product.slug.current}`}>{product.title}</Link>
               {' — '}
               {product.listingType === 'sale'
                 ? `${product.price} kr`
