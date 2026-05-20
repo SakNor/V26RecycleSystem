@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import client from '../helpers/sanityClient'
 
 export default function Home() {
-  // Lager en state. Staten er en tom array, som vi kan legge til ting inni. 
-  const [forSale, setForSale] = useState([])
+// Staten starter som en tom liste, og fylles med produkter når de er hentet fra databasen  const [forSale, setForSale] = useState([])
   const [forTrade, setForTrade] = useState([])
 
   // useEffect er en funksjon som henter data fra komponenter. 
