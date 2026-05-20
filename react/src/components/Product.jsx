@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import client from '../helpers/sanityClient'
+import NewProduct from './NewProduct'
 
 const statusLabels = {
   active: 'Aktiv',
@@ -44,10 +45,9 @@ export default function Product() {
     <div className="product">
       <h1>{product.title}</h1>
 
-      <img
+      <img className="img"
         src={product.imageUrl || `https://placehold.co/400x400?text=${encodeURIComponent(product.title)}`}
         alt={product.title}
-        style={{ maxWidth: 400 }}
       />
 
       <p>{product.description}</p>

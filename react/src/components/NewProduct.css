@@ -64,3 +64,7 @@
 .product-form .form-error {
   color: #c33;
 }
+
+.img {
+      max-width: 400px
+}
