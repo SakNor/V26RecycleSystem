@@ -9,7 +9,7 @@ const user = {
     { name: 'postalCode', title: 'Postnummer', type: 'string' },
     { name: 'city', title: 'Poststed', type: 'string' },
     { name: 'email', title: 'E-post', type: 'string', validation: r => r.required().email() },
-    { name: 'password', title: 'Passord', type: 'string', validation: r => r.required() }
+    { name: 'password', title: 'Passord', type: 'string', hidden: true, validation: r => r.required() }
   ]
 }
 

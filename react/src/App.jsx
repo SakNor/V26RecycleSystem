@@ -10,12 +10,14 @@ import Users from './components/Users'
 import Show404 from './components/show404'
 import NewProduct from './components/NewProduct'
 import SearchResults from './components/SearchResults'
+import Login from './components/Login'
 import './App.css'
+import CategoryProducts from './components/CategoryProducts'
 
-function App() {
+ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null)
 
-  useEffect(() => {
+/*  useEffect(() => {
     // Only fetch if loggedInUser is not set
     if (!loggedInUser) {
       const fetchUser = async () => {
@@ -27,9 +29,12 @@ function App() {
           console.error('❌ Error fetching logged in user:', error)
         }
       }
-      fetchUser()
-    }
-  }, [])
+      fetchUser() 
+    } 
+  }, []) */
+
+
+
 
   return (
     <Routes>
@@ -37,11 +42,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/users" element={<Users />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/profile/:id" element={<Profile loggedInUser={loggedInUser} />} />
+        <Route path="/profile/:id" element={<Profile loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser } />} />
         <Route path="/list/:id" element={<List />} />
         <Route path="/products/new" element={<NewProduct loggedInUser={loggedInUser} />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
         <Route path="*" element={<Show404 />} />
+        <Route path="/category/:id" element={<CategoryProducts />} />
       </Route>
     </Routes>
   )
