@@ -24,6 +24,8 @@ const userList = {
       name: 'products',
       title: 'Produkter',
       type: 'array',
+      // of sier hva listen skal inneholde, hvilke elementer som er lov å legge inn.
+      // To peker på produktet, som en snarvei.
       of: [{ type: 'reference', to: [{ type: 'product' }] }]
     }
   ]
