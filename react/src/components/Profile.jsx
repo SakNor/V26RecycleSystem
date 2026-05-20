@@ -19,9 +19,10 @@ export default function Profile({ loggedInUser }) {
         "lists": *[_type == "userList" && owner._ref == $id]{
           _id, title, isPublic, "productCount": count(products)
         },
-        "products": *[_type == "product" && owner._ref == $id && status == "active"]{
-          _id, title, listingType, price, tradeWish
-        }
+        "products": *[_type == "product" && owner._ref == $id]{
+          _id, title, listingType, price, tradeWish, "slug": slug.current, status
+        },
+
       }`
       const result = await client.fetch(query, { id })
       setUser(result.user)
@@ -53,9 +54,9 @@ export default function Profile({ loggedInUser }) {
           <ul>
             {products.map(product => (
               <li key={product._id}>
-                <Link to={`/product/${product.slug.current}`}>{product.title}</Link>
+                <Link to={`/product/${product.slug}`}>{product.title}</Link>
                 {' — '}
-                {product.listingType === 'sale'
+                {product.status === 'sold' ? 'solgt' : product.listingType === 'sale'
                   ? `${product.price} kr`
                   : `Bytte: ${product.tradeWish}`}
               </li>

@@ -64,7 +64,8 @@ const product = {
       options: {
         list: [
           { title: 'Til salgs', value: 'sale' },
-          { title: 'Til bytte', value: 'trade' }
+          { title: 'Til bytte', value: 'trade' },
+          { title: 'Gis bort', value: 'gift' }
         ],
         layout: 'radio'
       },
@@ -83,6 +84,12 @@ const product = {
       title: 'Ønskes byttet mot',
       type: 'text',
       hidden: ({ parent }) => parent?.listingType !== 'trade'
+    },
+    {
+      name: 'gift',
+      title: 'Gis bort',
+      type: 'string',
+      hidden: ({ parent }) => parent?.listingType !== 'gift'
     }
   ]
 }

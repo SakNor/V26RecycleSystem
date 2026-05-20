@@ -65,7 +65,8 @@ export default function NewProduct({ loggedInUser }) {
         owner: { _type: 'reference', _ref: loggedInUser._id },
         subcategory: { _type: 'reference', _ref: subcategoryId },
         ...(listingType === 'sale' ? { price: price.trim() } : {}),
-        ...(listingType === 'trade' ? { tradeWish: tradeWish.trim() } : {})
+        ...(listingType === 'trade' ? { tradeWish: tradeWish.trim() } : {}),
+        ...(listingType === 'gift' ? { gift: gift.trim() } : {})
       })
       navigate(`/product/${newProduct._id}`)
     } catch (err) {
@@ -143,6 +144,16 @@ export default function NewProduct({ loggedInUser }) {
             />
             {' '}Til bytte
           </label>
+          <label>
+            <input
+              type="radio"
+              name="listingType"
+              value="gift"
+              checked={listingType === 'gift'}
+              onChange={(e) => setListingType(e.target.value)}
+            />
+            {' '}Gis bort
+            </label>
         </fieldset>
 
         {listingType === 'sale' && (

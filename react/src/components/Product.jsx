@@ -24,6 +24,7 @@ export default function Product() {
         listingType,
         price,
         tradeWish,
+        gift,
         "subcategory": subcategory->{
           title,
           "category": category->title
@@ -58,10 +59,11 @@ export default function Product() {
           Kategori: {product.subcategory?.category} / {product.subcategory?.title}
         </li>
         <li>
-          Type: {product.listingType === 'sale' ? 'Til salgs' : 'Til bytte'}
+        Type: {product.listingType === 'sale' ? 'Til salgs' : product.listingType === 'trade' ? 'Til bytte' : 'Gis bort'}
         </li>
         {product.listingType === 'sale' && <li>Pris: {product.price} kr</li>}
         {product.listingType === 'trade' && <li>Ønskes byttet mot: {product.tradeWish}</li>}
+        {product.listingType === 'gift' && <li>Gis bort: {product.gift} </li>}
       </ul>
 
       <section className="owner-card">

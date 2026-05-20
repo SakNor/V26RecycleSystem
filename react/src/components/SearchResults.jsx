@@ -18,7 +18,7 @@ export default function SearchResults() {
       const query = `*[_type == "product" && (
         title match $term || description match $term
       )]{
-        _id, title, description, listingType, price, tradeWish, status
+        _id, title, description, listingType, price, tradeWish, gift, status
       } | order(title asc)`
       const data = await client.fetch(query, { term: `*${q}*` })
       setResults(data)
